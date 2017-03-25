@@ -116,22 +116,79 @@
 \begin{proof}[Solution]
 	\begin{enumerate}[(a)]
 		% % a % %
-		\item 
+		\item \emph{Data fitting} is the process of finding or constructing a reasonable function $v$ that fits a given set of data. \emph{Interpolation} is a method of constructing a reasonable function $v$ to fit data such that this function exactly passes through the given data. In other words, given a set of data points $\{ (x_i, y_i) \}_{i = 0}^n$, require that $v(x)$ \emph{interpolate} this data so that it satisfies 
+		
+		\[
+		v(x_i) = y_i {,} \quad i = 0, 1 \ldots, n {.}
+		\]		
+		
+		From this one can understand better why interpolation is a special case of approximation. \emph{Polynomial interpolation} is a special case of interpolation, where we restrict our search for an interpolated function $v$ to the polynomials, i.e., 
+		
+		\[
+		v(x) = \sum_{j = 0}^{n} c_j x^j = c_0 + c_1 x^1 + \cdots + c_n x^n {.}
+		\]
+		
+		By reasonable, we mean (loosely) that the interpolating function must resemble a curve that we would actually draw through the points. 
 		
 		% % b % %
-		\item 
+		\item As stated in (a), discrete data fitting is the process of, given a set of (discrete) data points $\{ (x_i, y_i) \}_{i = 0}^n$, finding a reasonable function $v(x)$ that fits the data points. Approximating a given function\footnote{Note that this given function could be given explicitly or implicitly.} $f(x)$ is the process of finding some simpler function $v(x)$ that approximates $f(x)$. The difference between these two methods is that, in approximating a function, we have some freedom of choosing the $x_i$ cleverly as well as that we may be able to consider the \emph{global} interpolation error. 
+		
+		It is easy to see how one may have more opportunity to consider the global interpolation error when approximating some given function since we may use global properties of the given function when approximating. On the other hand, when data fitting, we are merely given a set of data points which will allow us to construct a function which only \emph{locally} resembles the approximated data or function. 
 		
 		% % c % %
-		\item 
+		\item If $V$ is a vector space over a field $k$, a \emph{linear form} $f$ is a linear function from $V$ to $k$, i.e.
+		
+		\begin{gather*}
+		f(u + v) = f(u) + f(v) \quad \text{for all } u, v \in V \\
+		f(a v) = a f(v) \quad \text{for all } a \in k \text{ and } v \in V {.}
+		\end{gather*}
+		
+		We generally assume a linear form for all interpolating functions $v(x)$, and write 
+		
+		\[
+		v(x) = \sum_{j = 0}^n c_j \phi_j(x) = c_0 \phi_0(x) + \cdots + c_n \phi_n(x) {,}
+		\]
+		
+		where $\{ c_j \}_{j = 0}^n$ are \emph{unknown coefficients} or \emph{parameters} determined from the data and $\{ \phi_j (x) \}_{j  = 0}^n$ are predetermined \emph{basis functions}. These basis functions are assumed to be linearly independent. Notice that $v(x)$ is a linear form, so it is not necessarily linear in $x$; it is linear in its basis functions. This is a simple consequence of the definition. 
 		
 		% % d % %
-		\item 
+		\item We give simple proof of the following theorem. 
+		
+		\begin{theorem*}
+			Let $\{ x_i \}_{i = 0}^n$ be a sequence of distinct real numbers. Then for some arbitrary sequence $\{ y_i \}_{i = 0}^n$ of real numbers there exists a unique polynomial $p$ of degree $n$ such that 
+			
+			\[
+			p(x_i) = y_i \quad \text{for } i = 0, \ldots, n {.}
+			\]
+		\end{theorem*}
+		\begin{proof}
+			Suppose there were another such polynomial $q$. Then the polynomial $p - q$ is of degree $n$ with zeros at $x_i$ for each $i$. Hence $p - q$ has $n + 1$ zeros, which is only possible if it is the zero polynomial. Hence $p \equiv q$. 
+		\end{proof}
 		
 		% % e % %
-		\item 
+		\item A major advantage of using a monomial basis is its intuitive simplicity and straightforwardness. Some disadvantages include: 
+		
+		\begin{itemize}
+			\item the calculated coefficients $c_j$ are not directly indicative of the interpolated function, and they may completely change if we wish to slightly modify the interpolation problem
+			
+			\item the Vandermonde matrix $X$ is often ill-conditioned, so the coefficients thus determined are prone to inaccuracies 
+			
+			\item this approach requires about $\frac{2}{3} n^3$ operations (flops) to carry out Gaussian elimination for the construction stage; another method exists which requires only $O(n^2)$ operations. The evaluation stage, however, is as quick as can be; using the nested form, it requires about $2 n$ flops per evaluation point. 
+		\end{itemize} 
+		
+		The latter two disadvantages are not always important. The $O(n^3)$ cost matters when $n$ is large. The ill-conditioning of the Vandermonde matrix matters mostly when the interval of interpolation or the size of $n$ is large. 
 		
 		% % f % %
-		\item 
+		\item A Lagrange polynomial $L_j(x)$ is a polynomial of degree $n$ that satisfies
+		
+		\[
+		L_j(x_i) = \begin{cases}
+		0 {,} &\quad i \neq j {,} \\
+		1 {,} &\quad i = j {.}
+		\end{cases}
+		\]
+		
+		Lagrange polynomials are used as a basis in polynomial interpolation. 
 		
 		% % g % %
 		\item 
