@@ -1,0 +1,211 @@
+\documentclass[12pt,a4]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage{amscd}
+\usepackage{mathtools}
+\usepackage{geometry, algorithmicx} 
+\usepackage[noend]{algpseudocode}
+\usepackage{subfig}
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{fancyhdr}
+\usepackage{enumerate}
+\usepackage{pgf, tikz}
+\usetikzlibrary{shapes,snakes}
+\usetikzlibrary{arrows, automata}
+\theoremstyle{definition}
+
+
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[CE]{\Author}
+\fancyhead[CO]{\Title}
+\renewcommand\headrulewidth{0pt}
+\pagestyle{fancy}
+
+\author{Colin Ford}
+\title{Ascher - Chapter 3 Exercises}
+\date{}
+
+\makeatletter
+\let\Title\@title
+\makeatother
+
+\newtheorem*{theorem*}{Theorem}
+\newtheorem*{proposition*}{Proposition}
+\newtheorem{problem}{Problem}
+\newtheorem*{problem*}{Problem}
+\newtheorem{exercise}{Exercise}
+\newtheorem{lemma}{Lemma}
+\newtheorem*{definition*}{Definition}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem*{claim*}{Claim}
+\newtheorem*{example}{Example}
+
+\begin{document}
+
+\maketitle
+
+% % % % % % % % % % %
+% % % Problem 1 % % %
+% % % % % % % % % % %
+\begin{exercise}[Review Questions]
+	\begin{enumerate}[(a)]
+		% % a % %
+		\item What is a nonlinear equation?
+		
+		% % b % %
+		\item Is the bisection method (i) efficient? (ii) robust? Does it (iii) require a minimum amount of additional knowledge? (iv) require $f$ to satisfy only minimum smoothness properties? (v) generalize easily to several functions in several variables?
+		
+		% % c % %
+		\item Answer similar questions for the Newton and Secant methods.
+		
+		% % d % %
+		\item State at least one advantage and one disadvantage of the recursive implementation of the bisection method over the iterative nonrecursive implementation.
+		
+		% % e % %
+		\item In what way is the fixed point iteration a \emph{family} of methods, rather than just one method like bisection or secant?
+		
+		% % f % %
+		\item What is the basic condition for convergence of the fixed point iteration, and how does the speed of convergence relate to the derivative of the iteration function $g$?
+		
+		% % g % %
+		\item Suppose a given fixed point iteration does not converge: does this mean that there is no root in the relevant interval? Answer a similar question for the Newton and secant methods. 
+		
+		% % h % %
+		\item State at least two advantages and two disadvantages of Newton's method. 
+
+		% % i % %
+		\item What are order of convergence and rate of convergence, and how do they relate?
+		
+		% % j % %
+		\item State at least one advantage and one disadvantage of the secant method over Newton's.
+		
+		% % k % %
+		\item In what situation does Newton's method converge only linearly?
+		
+		% % l % %
+		\item Explain the role that roundoff errors  play in the convergence of solvers for nonlinear equations, and explain their relationship with convergence errors.
+		
+		% % m % %
+		\item State a similarity and a difference between the  problem of minimizing a function $\varphi(x)$ and that of solving the nonlinear equation $\varphi'(x) = 0$. 
+		
+		% % n % %
+		\item State what a convex function is, and explain what happens if an objective function is convex. 
+	\end{enumerate}
+\end{exercise}
+\begin{proof}[Solution]
+	\begin{enumerate}[(a)]
+		% % a % %
+		\item A function $f$ is \emph{linear} if it satisfies the following two properties: 
+		
+		\begin{align*}
+		f(x + y) &= f(x) + f(y) \\
+		f(\alpha x) &= \alpha f(x) 
+		\end{align*}
+		
+		where the first property is called additivity and the second homogeneity. Any function which does not satisfy these properties is called \emph{nonlinear}. 
+		
+		% % b % %
+		\item 
+		\begin{enumerate}[(i)]
+			% % i % %
+			\item 
+			
+			% % ii % %
+			\item 
+			
+			% % iii % %
+			\item 
+		\end{enumerate}
+		
+		% % c % %
+		\item 
+		
+		% % d % %
+		\item 
+		
+		% % e % %
+		\item 
+		
+		% % f % %
+		\item 
+		
+		% % g % %
+		\item 
+		
+		% % h % %
+		\item 
+		
+		% % i % %
+		\item 
+		
+		% % j % %
+		\item 
+		
+		% % k % %
+		\item 
+		
+		% % l % %
+		\item 
+		
+		% % m % %
+		\item 
+		
+		% % n % %
+		\item 
+	\end{enumerate}
+\end{proof}
+
+% % % % % % % % % % %
+% % % Problem 2 % % %
+% % % % % % % % % % %
+\begin{exercise}
+	 
+\end{exercise}
+\begin{proof}[Solution]
+	
+\end{proof}
+
+% % % % % % % % % % %
+% % % Problem 3 % % %
+% % % % % % % % % % %
+\begin{exercise}
+	
+\end{exercise}
+\begin{proof}[Solution]
+	
+\end{proof}
+
+% % % % % % % % % % %
+% % % Problem 4 % % %
+% % % % % % % % % % %
+\begin{exercise}
+	
+\end{exercise}
+\begin{proof}[Solution]
+	
+\end{proof}
+
+% % % % % % % % % % %
+% % % Problem 5 % % %
+% % % % % % % % % % %
+\begin{exercise}
+	
+\end{exercise}
+\begin{proof}[Solution]
+	
+\end{proof}
+
+% % % % % % % % % % %
+% % % Problem 6 % % %
+% % % % % % % % % % %
+\begin{exercise}
+	
+\end{exercise}
+\begin{proof}[Solution]
+	
+\end{proof}
+
+
+\end{document}
