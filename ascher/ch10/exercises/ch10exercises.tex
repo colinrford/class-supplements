@@ -42,12 +42,14 @@
 \newtheorem*{claim*}{Claim}
 \newtheorem*{example}{Example}
 
+\setcounter{exercise}{-1}
+
 \begin{document}
 
 \maketitle
 
 % % % % % % % % % % %
-% % % Problem 1 % % %
+% % % Exercise 0 % % %
 % % % % % % % % % % %
 \begin{exercise}[Review Questions]
 	\begin{enumerate}[(a)]
@@ -128,7 +130,7 @@
 		v(x) = \sum_{j = 0}^{n} c_j x^j = c_0 + c_1 x^1 + \cdots + c_n x^n {.}
 		\]
 		
-		By reasonable, we mean (loosely) that the interpolating function must resemble a curve that we would actually draw through the points. 
+		By ``reasonable'', we mean (loosely) that the interpolating function must resemble a curve that we would actually draw through the points. By ``restrict our search'', we simply mean to restrict our choice of basis functions to some set of polynomials. 
 		
 		% % b % %
 		\item As stated in (a), discrete data fitting is the process of, given a set of (discrete) data points $\{ (x_i, y_i) \}_{i = 0}^n$, finding a reasonable function $v(x)$ that fits the data points. Approximating a given function\footnote{Note that this given function could be given explicitly or implicitly.} $f(x)$ is the process of finding some simpler function $v(x)$ that approximates $f(x)$. The difference between these two methods is that, in approximating a function, we have some freedom of choosing the $x_i$ cleverly as well as that we may be able to consider the \emph{global} interpolation error. 
@@ -179,7 +181,7 @@
 		The latter two disadvantages are not always important. The $O(n^3)$ cost matters when $n$ is large. The ill-conditioning of the Vandermonde matrix matters mostly when the interval of interpolation or the size of $n$ is large. 
 		
 		% % f % %
-		\item A Lagrange polynomial $L_j(x)$ is a polynomial of degree $n$ that satisfies
+		\item A \emph{Lagrange polynomial} $L_j(x)$ is a polynomial of degree $n$ that satisfies
 		
 		\[
 		L_j(x_i) = \begin{cases}
@@ -188,36 +190,109 @@
 		\end{cases}
 		\]
 		
-		Lagrange polynomials are used as a basis in polynomial interpolation. 
+		Lagrange polynomials are used as a basis in polynomial interpolation. By this we mean 
+		
+		\[
+		p(x) = \sum_{j = 0}^{n} y_j L_j(x) {.} 
+		\]
 		
 		% % g % %
-		\item 
+		\item Barycentric weights are used in the construction process of Lagrange polynomial interpolation. Define
+		
+		\[
+		\rho_j = \prod_{i \neq j} (x_j - x_i) {,} \quad w_j = \frac{1}{\rho_j} {,} \quad j = 0, 1, \ldots, n {.}
+		\]
+		
+		This construction requires $O(n^2)$ flops, and the quantities $w_j$ are called \emph{barycentric weights}. 
 		
 		% % h % %
-		\item 
+		\item The Lagrange polynomials form an ideally conditioned basis for all polynomials of degree at most $n$. Another advantage is that the Lagrange representation is easy to manipulate when seeking formulas for differentiation and integration. A disadvantage is that must introduce the interpolation data $(x_i, y_i)$ all at once instead of one pair at a time. 
 		
 		% % i % %
-		\item 
+		\item The coefficient $c_j$ of the interpolating polynomial in Newton's form is called the $j$th \emph{divided difference}, denoted $f[x_0, x_1, \ldots, x_j]$. These are defined recursively as follows. Given points $x_0, x_1, \ldots, x_n$, for arbitrary indices $0 \leq i < j \leq n$, set 
+		
+		\begin{align*}
+		f[x_i] &= f(x_i) {,} \\
+		f[x_i, \ldots, x_j] &= \frac{f[x_{i + 1}, \ldots, x_j] - f[x_i, \ldots, x_{j - 1}]}{x_j - x_i} {.}
+		\end{align*}
+		
+		A \emph{divided difference table} is a lower triangular matrix composed of the divided differences, where the diagonal entries are the coefficients $c_j = \gamma_{j, j} = f[x_0, \ldots, x_j]$. 
 		
 		% % j % %
-		\item 
+		\item The formula is given by 
+		
+		\begin{align*}
+		p_n(x) &= f[x_0] + f[x_0, x_1] (x - x_0) + f[x_0, x_1, x_2] (x - x_0) (x - x_1) \\
+		 &\quad + \cdots + f[x_0, x_1, \ldots, x_n] (x - x_0) (x - x_1) \cdots (x - x_{n - 1}) \\
+		 &= \sum_{j = 0}^{n} \left( f[x_0, x_1, \ldots, x_j] \prod_{i = 0}^{j - 1} (x - x_i) \right) {.} 
+		\end{align*}
 		
 		% % k % %
-		\item 
+		\item Newton's method is adaptive in that we do not need to know all data points, or determine the degree $n$, ahead of time. This is quite helpful, for example, in laboratory measurements where not all data become available at once. 
 		
 		% % l % %
-		\item 
+		\item The linear system solved for in the monomial basis involves an $n \times n$ coefficient matrix which is invertible with entries $x_i^j$ for $i, j = 0, 1, \ldots, n$. 
+		
+		The linear system solved for in the Lagrange representation involves an $n \times n$ identity matrix, since the matrix elements are $\phi_j(x_i) =  L_j(x_i)$, which will equal 0 when $i \neq j$ and 1 when $i = j$, as defined in (f). The system thus yields the solution $c_j = y_j$ for $j = 0, 1, \ldots, n$. 
+		
+		The linear system solved for in the Newton representation involves an $n \times n$ lower triangular matrix with nonzero entries along the diagonal, and hence is invertible. The entries are given by $\gamma_{j, l} = f[x_{j - l}, x_{j - l + 1}, \ldots x_j]$, $0 \leq l \leq j \leq n$. Additionally, there is a unique solution for the unknown coefficients $c_0, \ldots, c_n$ in terms of the data $y_0, \ldots, y_n$. It is more or less the divided difference table. 
 		
 		% % m % %
-		\item 
+		\item This connection is illustrated in the following theorem. 
+		
+		\begin{theorem*}
+			Let the function $f$ be defined and have $k$ bounded derivatives in an interval $[a, b]$ and let $z_0, z_1, \ldots, z_k$ be $k + 1$ distinct points in $[a, b]$. Then there is a point $\zeta \in [a, b]$ such that 
+			
+			\[
+			f[z_0, z_1, \ldots, z_k] = \frac{f^{(k)}(\zeta)}{k!} {.}
+			\]
+		\end{theorem*}
 		
 		% % n % %
+		\item We define the \emph{error function} of a constructed interpolant as 
+		
+		\[
+		e_n(x) = f(x) - p_n(x) = \frac{f^{(n + 1)} (\xi)}{(n + 1)!} \prod_{i = 0}^n (x - x_i) {,}
+		\]
+		
+		where the right-hand side makes sense if $f$ is smooth enough; $f$ having $n + 1$ bounded derivatives is sufficient. An expression for the error bound is given by
+		
+		\[
+		\max_{a \leq x \leq b} |f(x) - p_n(x)| \leq \frac{1}{(n + 1)!} \max_{a \leq t \leq b} |f^{(n + 1)}(t)| \max_{a \leq s \leq b} \prod_{i = 0}^{n} |s - x_i| {.}
+		\]
+		
+		% % o % %
+		\item 
+		
+		% % p % %
+		\item 
+		
+		% % q % %
+		\item 
+		
+		% % r % %
+		\item 
+		
+		% % s % %
+		\item 
+		
+		% % t % %
 		\item 
 	\end{enumerate}
 \end{proof}
 
 % % % % % % % % % % %
-% % % Problem 2 % % %
+% % % Exercise 1 % % %
+% % % % % % % % % % %
+\begin{exercise}
+	
+\end{exercise}
+\begin{proof}[Solution]
+	
+\end{proof}
+
+% % % % % % % % % % %
+% % % Exercise 2 % % %
 % % % % % % % % % % %
 \begin{exercise}
 	 
@@ -227,7 +302,7 @@
 \end{proof}
 
 % % % % % % % % % % %
-% % % Problem 3 % % %
+% % % Exercise 3 % % %
 % % % % % % % % % % %
 \begin{exercise}
 	
@@ -237,7 +312,7 @@
 \end{proof}
 
 % % % % % % % % % % %
-% % % Problem 4 % % %
+% % % Exercise 4 % % %
 % % % % % % % % % % %
 \begin{exercise}
 	
@@ -247,7 +322,7 @@
 \end{proof}
 
 % % % % % % % % % % %
-% % % Problem 5 % % %
+% % % Exercise 5 % % %
 % % % % % % % % % % %
 \begin{exercise}
 	
@@ -257,7 +332,7 @@
 \end{proof}
 
 % % % % % % % % % % %
-% % % Problem 6 % % %
+% % % Exercise 6 % % %
 % % % % % % % % % % %
 \begin{exercise}
 	
@@ -266,5 +341,14 @@
 	
 \end{proof}
 
+% % % % % % % % % % %
+% % % Exercise 7 % % %
+% % % % % % % % % % %
+\begin{exercise}
+	
+\end{exercise}
+\begin{proof}[Solution]
+	
+\end{proof}
 
 \end{document}
