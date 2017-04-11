@@ -1,0 +1,271 @@
+\documentclass[12pt,a4]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage{amscd}
+\usepackage{mathtools}
+\usepackage{geometry, algorithmicx} 
+\usepackage[noend]{algpseudocode}
+\usepackage{subfig}
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{fancyhdr}
+\usepackage{enumerate}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=black
+}
+\usepackage{pgf, tikz}
+\usetikzlibrary{shapes,snakes}
+\usetikzlibrary{arrows, automata}
+\theoremstyle{definition}
+
+
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[CE]{\Author}
+\fancyhead[CO]{\Title}
+\renewcommand\headrulewidth{0pt}
+\pagestyle{fancy}
+
+\author{Colin Ford}
+\title{Complex Analysis - Chapter 1 Exercises}
+\date{}
+
+\makeatletter
+\let\Title\@title
+\makeatother
+
+\newtheorem*{theorem*}{Theorem}
+\newtheorem*{proposition*}{Proposition}
+\newtheorem{problem}{Problem}
+\newtheorem*{problem*}{Problem}
+\newtheorem{exercise}{}
+\newtheorem{lemma}{Lemma}
+\newtheorem*{definition*}{Definition}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem*{claim*}{Claim}
+\newtheorem*{example}{Example}
+
+\renewcommand{\Re}{\text{Re}}
+\renewcommand{\Im}{\text{Im}}
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\R}{\mathbb{R}}
+
+\begin{document}
+
+\maketitle
+
+\section*{Exercises}
+
+% % % % % % % % % % %
+% % % Exercise 1 % % %
+% % % % % % % % % % %
+\begin{exercise}
+	Describe geometrically the sets of points $z$ in the complex plane defined by the following relations:
+	
+	\begin{enumerate}[(a)]
+		% % a % %
+		\item $|z - z_1| = |z - z_2|$ where $z_1, z_2 \in \C$. 
+		
+		% % b % %
+		\item $1 / z = \bar{z}$. 
+		
+		% % c % %
+		\item $\Re(z) = 3$. 
+		
+		% % d % %
+		\item $\Re(z) > c$, (resp., $\geq c$) where $c \in \R$. 
+		
+		% % e % %
+		\item $\Re(a z + b) > 0$ where $a, b \in \C$. 
+		
+		% % f % %
+		\item $|z| = \Re(z) + 1$. 
+		
+		% % g % %
+		\item $\Im(z) = c$ with $c \in \R$.
+	\end{enumerate}
+\end{exercise}
+\begin{proof}[Solution]
+	\begin{enumerate}[(a)]
+		% % a % %
+		\item 
+		
+		% % b % %
+		\item Rearranging this to $z \bar{z} = |z|^2 = 1$, we have the unit circle in the plane. 
+		
+		% % c % %
+		\item This is the vertical line at $\Re(z) = 3$. Each number along this line is of the form $z = 3 + i y$.
+		
+		% % d % %
+		\item 
+		
+		% % e % %
+		\item 
+		
+		% % f % %
+		\item 
+		
+		% % g % %
+		\item 
+	\end{enumerate}
+\end{proof}
+
+% % % % % % % % % % %
+% % % Exercise 2 % % %
+% % % % % % % % % % %
+\begin{exercise}
+	
+\end{exercise}
+
+% % % % % % % % % % %
+% % % Exercise 3 % % %
+% % % % % % % % % % %
+\begin{exercise}
+	
+\end{exercise}
+
+% % % % % % % % % % %
+% % % Exercise 4 % % %
+% % % % % % % % % % %
+\begin{exercise}
+	
+\end{exercise}
+
+% % % % % % % % % % %
+% % % Exercise 5 % % %
+% % % % % % % % % % %
+\begin{exercise}
+	
+\end{exercise}
+
+% % % % % % % % % % %
+% % % Exercise 6 % % %
+% % % % % % % % % % %
+\begin{exercise}
+	
+\end{exercise}
+
+% % % % % % % % % % %
+% % % Exercise 7 % % %
+% % % % % % % % % % %
+\begin{exercise}
+	
+\end{exercise}
+
+% % % % % % % % % % %
+% % % Exercise 8 % % %
+% % % % % % % % % % %
+\begin{exercise}
+	
+\end{exercise}
+
+% % % % % % % % % % %
+% % % Exercise 9 % % %
+% % % % % % % % % % %
+\begin{exercise}
+	
+\end{exercise}
+
+	% % % % % % % % % % %
+	% % % Exercise 10 % % %
+	% % % % % % % % % % %
+	\begin{exercise}\label{ex:10}
+		Show that
+	
+		\[
+		4 \frac{\partial}{\partial z} \frac{\partial}{\partial \bar{z}} = 4 \frac{\partial}{\partial \bar{z}} \frac{\partial}{\partial z} = \triangle {,}
+		\]
+	
+		\noindent where $\triangle$ is the \textbf{Laplacian}
+	
+		\[
+		\triangle = \frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2} {.}
+		\]
+	\end{exercise}
+	\begin{proof}
+		Recall that 
+		
+		\[
+		\frac{\partial}{\partial z} = \frac{1}{2} \left( \frac{\partial}{\partial x} + \frac{1}{i} \frac{\partial}{\partial y} \right) \quad \text{and} \quad \frac{\partial}{\partial \bar{z}} = \frac{1}{2} \left( \frac{\partial}{\partial x} - \frac{1}{i} \frac{\partial}{\partial y} \right) {.}
+		\]
+		
+		\noindent $\triangle$ is obtained by a simple computation of these two operators. Indeed, 
+		
+		\begin{align*}
+		\frac{\partial}{\partial z} \frac{\partial}{\partial \bar{z}} &= \frac{1}{2} \left( \frac{\partial}{\partial x} + \frac{1}{i} \frac{\partial}{\partial y} \right) \cdot \frac{1}{2} \left( \frac{\partial}{\partial x} - \frac{1}{i} \frac{\partial}{\partial y} \right) \\
+		 &= \frac{1}{4} \left( \frac{\partial^2}{\partial x^2} - \frac{1}{i} \frac{\partial^2}{\partial x \partial y} + \frac{1}{i} \frac{\partial^2}{\partial y \partial x} + \frac{\partial^2}{\partial y^2} \right) \\
+		 &= \frac{1}{4} \left( \frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2} \right) \\
+		 &= \frac{1}{4} \triangle {,} 
+		\end{align*}
+		
+		\noindent where we have used the following fact
+		
+		\[
+		\frac{\partial^2}{\partial x \partial y} = \frac{\partial^2}{\partial y \partial x} {,}
+		\]
+		
+		\noindent a consequence of Fubini's theorem. The other $\frac{\partial}{\partial \bar{z}} \frac{\partial}{\partial z}$
+		
+
+	\end{proof}
+
+	% % % % % % % % % % %
+	% % % Exercise 11 % % %
+	% % % % % % % % % % %
+	\begin{exercise}
+		Use Exercise 10 to prove that if $f$ is holomorphic in the open set $\Omega$, then the real and imaginary parts of $f$ are \text{harmonic}; that is, their Laplacian is zero. 
+	\end{exercise}
+	\begin{proof}
+		Suppose $f$ is holomorphic in an open set $\Omega$. (later; application of Exercise \hyperref[ex:10]{\ref{ex:10}} and the Cauchy-Riemann equations).
+	\end{proof}
+
+% % % % % % % % % % %
+% % % Exercise 12 % % %
+% % % % % % % % % % %
+\begin{exercise}
+	
+\end{exercise}
+
+% % % % % % % % % % %
+% % % Exercise 13 % % %
+% % % % % % % % % % %
+\begin{exercise}
+	
+\end{exercise}
+
+% % % % % % % % % % %
+% % % Exercise 14 % % %
+% % % % % % % % % % %
+\begin{exercise}
+	
+\end{exercise}
+
+% % % % % % % % % % %
+% % % Exercise 15 % % %
+% % % % % % % % % % %
+\begin{exercise}
+	
+\end{exercise}
+
+% % % % % % % % % % %
+% % % Exercise 16 % % %
+% % % % % % % % % % %
+\begin{exercise}
+	
+\end{exercise}
+
+% % % % % % % % % % %
+% % % Exercise 17 % % %
+% % % % % % % % % % %
+\begin{exercise}
+	
+\end{exercise}
+
+\end{document}
