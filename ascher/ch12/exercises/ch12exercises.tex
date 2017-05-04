@@ -1,0 +1,322 @@
+\documentclass[12pt,a4]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage{amscd}
+\usepackage{mathtools}
+\usepackage{geometry, algorithmicx} 
+\usepackage[noend]{algpseudocode}
+\usepackage{subfig}
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{fancyhdr}
+\usepackage{enumerate}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=black
+}
+\usepackage{pgf, tikz}
+\usetikzlibrary{shapes,snakes}
+\usetikzlibrary{arrows, automata}
+\theoremstyle{definition}
+
+
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[CE]{\Author}
+\fancyhead[CO]{\Title}
+\renewcommand\headrulewidth{0pt}
+\pagestyle{fancy}
+
+\author{Colin Ford}
+\title{Ascher - Chapter 12 Exercises}
+\date{}
+
+\makeatletter
+\let\Title\@title
+\makeatother
+
+\newtheorem*{theorem*}{Theorem}
+\newtheorem*{proposition*}{Proposition}
+\newtheorem{problem}{Problem}
+\newtheorem*{problem*}{Problem}
+\newtheorem{exercise}{Exercise}
+\newtheorem{lemma}{Lemma}
+\newtheorem*{definition*}{Definition}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem*{claim*}{Claim}
+\newtheorem*{example}{Example}
+
+\setcounter{exercise}{-1}
+
+\begin{document}
+
+\maketitle
+
+% % % % % % % % % % %
+% % % Exercise 0 % % %
+% % % % % % % % % % %
+\begin{exercise}[Review Questions]
+	\begin{enumerate}[(a)]
+		% % a % %
+		\item Distinguish between interpolation and best approximation.
+		
+		% % b % %
+		\item What is the difference between continuous and discrete least squares approximation?
+		
+		% % c % %
+		\item Write down the normal equations for least squares approximation.
+	
+		% % d % %
+		\item Write down the Hilbert matrix of size $n \times n$. When does this matrix arise?
+		
+		% % e % %
+		\item What are the conditions for a function $v(x)$ to be the orthogonal projection of a function $f(x)$ onto the space spanned by the two functions $\phi_1(x)$ and $\phi_2(x)$?
+		
+		% % f % %
+		\item What are orthogonal polynomials with respect to a weight function $w(x)$? Why are they useful for numerical computations?
+		
+		% % g % %
+		\item What are the Legendre polynomials, and how can they be used to solve the continuous least squares problem?
+		
+		% % h % %
+		\item Describe how to compute a best approximation on a general interval, $[a, b]$, not necessarily equal to the interval $[-1, 1]$.
+		
+		% % i % %
+		\item Explain what trigonometric polynomials are. Are they really polynomials? Are they orthogonal?
+		
+		% % j % %
+		\item Describe the Gram-Schmidt process and explain its importance.
+		
+		% % k % %
+		\item What are the Chebyshev polynomials? Why do we hear more about them than about other families of orthogonal polynomials?
+		
+		% % l % %
+		\item What is a min-max property?
+		
+		% % m % %
+		\item The weight function $w(x)$ for Chebyshev polynomials satisfies $w(x) \to \infty$ as $x \to \pm 1$. Is this a problem? Explain.
+		
+	\end{enumerate}
+\end{exercise}
+\begin{proof}[Solution]
+	\begin{enumerate}[(a)]
+		% % a % %
+		\item The difference from interpolation is that, in best approximation, we no longer require the approximation to pass through the data values. 
+		
+		% % b % %
+		\item On the one hand, the notation becomes simpler in the continuous case since we do not have to work with discrete data points. Additionally, the continuous case relies less heavily on linear algebra, and hence is more closely relatable to interpolation and numerical integration.
+		
+		% % c % %
+		\item The following linear conditions are the \emph{normal equations} for the continuous case:
+		
+		\begin{align*}
+		\tilde{B} \mathbf{c} &= \tilde{\mathbf{b}} {,} \quad \text{where} \\
+		\tilde{B}_{j, k} &= \int_a^b \phi_j(x) \phi_k(x) dx {,} \quad \tilde{b}_j = \int_a^b f(x) \phi_j(x) dx {.}
+		\end{align*}
+		
+		% % d % %
+		\item With the simplest basis representation on the interval $[0, 1]$, namely, the monomials
+		
+		\[
+		\phi_j(x) = x^j {,} \quad j = 0, 1, \ldots, n {,} 
+		\]
+		
+		\noindent we obtain
+		
+		\[
+		\tilde{B}_{j, k} = \int_0^1 x^{j + k} dx = \frac{1}{j + k + 1} {,} \quad 0 \leq j, k \leq n {.}
+		\]
+		
+		\noindent Thus, $\tilde{B}$ turns out the be the notorious \textbf{Hilbert matrix}. 
+		
+		% % e % %
+		\item 
+		
+		% % f % %
+		\item 
+		
+		% % g % %
+		\item 
+		
+		% % h % %
+		\item 
+		
+		% % i % %
+		\item 
+		
+		% % j % %
+		\item 
+		
+		% % k % %
+		\item 
+		
+		% % l % %
+		\item 
+		
+		% % m % %
+		\item 
+	\end{enumerate}
+\end{proof}
+
+% % % % % % % % % % %
+% % % Exercise 1 % % %
+% % % % % % % % % % %
+\begin{exercise}
+	Using the MATLAB instruction \texttt{cond}, find the condition numbers of Hilbert matrices for $n = 4, 5, \ldots, 12$. Plot these condition numbers as a function of $n$ using \texttt{semilogy}. What are your observations?
+\end{exercise}
+\begin{proof}[Solution]
+	
+\end{proof}
+
+% % % % % % % % % % %
+% % % Exercise 2 % % %
+% % % % % % % % % % %
+\begin{exercise}
+	Construct the second degree polynomial $q_2(t)$ that approximates $g(t) = \sin(\pi t)$ on the interval $[0, 1]$ by minimizing 
+	
+	\[
+	\int_0^1 [g(t) - q_2(t)]^2 dt {.}
+	\]
+	
+	\noindent Some useful integrals:
+	
+	\begin{gather}
+	\int_0^1 (6 t^2 - 6 t + 1)^2 dt = \frac{1}{5} {,} \quad \int_0^1 \sin(\pi t) dt = \frac{2}{\pi} {,} \\
+	\int_0^1 t \sin(\pi t) dt = \frac{1}{\pi} {,} \quad \int_0^1 t^2 \sin(\pi t) dt = \frac{\pi^2 - 4}{\pi^3} {.}
+	\end{gather}
+\end{exercise}
+\begin{proof}[Solution]
+	
+\end{proof}
+
+% % % % % % % % % % %
+% % % Exercise 3 % % %
+% % % % % % % % % % %
+\begin{exercise}
+	The Legendre polynomials satisfy 
+	
+	\[
+	\int_{-1}^{1} \phi_j(x) \phi_k(x) dx = \begin{cases}
+	0 {,} \quad j \neq k {,} \\
+	\frac{2}{2 j + 1} {,} \quad j = k {.}
+	\end{cases}
+	\]
+	
+	\noindent Suppose that the best fit problem is given on the interval $[a, b]$. 
+	
+	Show that with the transformation $t = \frac{1}{2} [(b - a) x + (a + b)]$ and a slight change of notation, we have 
+	
+	\[
+	\int_a^b \phi_j(t) \phi_k(t) dt = \begin{cases}
+	0 {,} \quad j \neq k {,} \\
+	\frac{b - a}{2 j + 1} {,} \quad j = k {.}
+	\end{cases}
+	\]
+\end{exercise}
+\begin{proof}[Solution]
+	
+\end{proof}
+
+% % % % % % % % % % %
+% % % Exercise 4 % % %
+% % % % % % % % % % %
+\begin{exercise}
+	Redo Example 12.1, reconstructing Figure 12.1, using an orthogonal polynomial basis.
+\end{exercise}
+\begin{proof}[Solution]
+	
+\end{proof}
+
+% % % % % % % % % % %
+% % % Exercise 5 % % %
+% % % % % % % % % % %
+\begin{exercise}
+	
+\end{exercise}
+\begin{proof}[Solution]
+	
+\end{proof}
+
+% % % % % % % % % % %
+% % % Exercise 6 % % %
+% % % % % % % % % % %
+\begin{exercise}
+	Let $\phi_0(x), \phi_1(x), \phi_2(x), \ldots$ be a sequence of orthogonal polynomials on an interval $[a, b]$ with respect to a positive weight function $w(x)$. Let $x_1, \ldots, x_n$ be the $n$ zeros of $\phi_n(x)$; it is known that these roots are real and $a < x_1 < \cdots < x_n < b$.
+	
+	\begin{enumerate}[(a)]
+		% % a % %
+		\item Show that the Lagrange polynomials of degree $n - 1$ based on these points are orthogonal to each other, so we can write
+		
+		\[
+		\int_a^b w(x) L_j(x) L_k(x) dx = 0 {,} \quad j \neq k {,}
+		\]
+		
+		\noindent where
+		
+		\[
+		L_j(x) = \prod_{k = 1, k \neq j}^{n} \frac{x - x_k}{x_j - x_k} {,} \quad 1 \leq j \leq n {.}
+		\]
+		
+		\noindent [Recall Section 10.3.]
+		
+		% % b % %
+		\item For a given function $f(x)$, let $y_k = f (x_k)$, $k = 1, \ldots, n$. Show that the polynomial $p_{n - 1}(x)$ of degree at most $n - 1$ that interpolates the function $f(x)$ at the zeros $x1,...,xn$ of the orthogonal polynomial $\phi_n(x)$ satisfies
+		
+		\[
+		\| p_{n - 1} \|^2 = \sum_{k = 1}^n y_k^b \| L_k \|^2
+		\]
+		
+		\noindent in the weighted least squares norm. This norm is defined by 
+		
+		\[
+		\| g \|^2 = \int_a^b w(x) [g(x)]^2 dx
+		\]
+		
+		\noindent for any suitably integrable function $g(x)$. 
+	\end{enumerate}
+\end{exercise}
+\begin{proof}[Solution]
+	
+\end{proof}
+
+% % % % % % % % % % %
+% % % Exercise 7 % % %
+% % % % % % % % % % %
+\begin{exercise}
+	Prove the Gram-Schmidt Theorem given on page 375. 
+\end{exercise}
+\begin{proof}[Solution]
+	
+\end{proof}
+
+% % % % % % % % % % %
+% % % Exercise 8 % % %
+% % % % % % % % % % %
+\begin{exercise}
+	Using the recursion formula for Chebyshev polynomials, show that $T_n(x)$ can be written as
+	
+	\[
+	T_n(x) = 2^{n - 1} (x - x_1) (x - x_2) \cdots (x - x_n) {,}
+	\]
+	
+	\noindent where $x_i$ are the $n$ roots of $T_n$. 
+\end{exercise}
+\begin{proof}[Solution]
+	
+\end{proof}
+
+% % % % % % % % % % %
+% % % Exercise 9 % % %
+% % % % % % % % % % %
+\begin{exercise}
+	
+\end{exercise}
+\begin{proof}[Solution]
+	
+\end{proof}
+
+\end{document}

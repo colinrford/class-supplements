@@ -32,7 +32,7 @@
 \pagestyle{fancy}
 
 \author{Colin Ford}
-\title{Ascher - Chapter 15 Exercises}
+\title{Ascher - Chapter 14 Exercises}
 \date{}
 
 \makeatletter
@@ -62,55 +62,99 @@
 \begin{exercise}[Review Questions]
 	\begin{enumerate}[(a)]
 		% % a % %
-		\item Define quadrature rule and precision.
+		\item What is a piecewise polynomial?
 		
 		% % b % %
-		\item In what basic way is numerical integration easier than numerical differentiation?
+		\item State at least three shortcomings of polynomial interpolation that are improved upon by piecewise polynomial interpolation.
 		
 		% % c % %
-		\item Why is polynomial interpolation a convenient tool for deriving quadrature rules, and why in Lagrange form and not Newton form?
+		\item State at least one advantage and one disadvantage of piecewise constant interpolation.
 	
 		% % d % %
-		\item Compare the properties of the basic trapezoidal and midpoint rules.
+		\item State at least two advantages and two disadvantages of broken line interpolation.
 		
 		% % e % %
-		\item Define a composite quadrature method.
+		\item What is a piecewise cubic Hermite?
 		
 		% % f % %
-		\item How come the composite trapezoidal and midpoint rules cost about the same?
+		\item In what ways are the cubic spline and piecewise cubic Hermite useful interpolants?
 		
 		% % g % %
-		\item What are the accuracy orders of the composite Simpson, midpoint, and trapezoidal methods?
+		\item Define the different end conditions for cubic spline interpolation, giving rise to the natural, complete, and not-a-knot variants. Which of these is most suitable for general purpose implementation, and why?
 		
 		% % h % %
-		\item What is the accuracy order of the composite Gaussian quadrature method using k points in each mesh subinterval (so, k = 1 for midpoint)?
+		\item 
 		
 		% % i % %
-		\item Define Gauss, Radau, and Lobatto points and explain their importance in quadrature.
+		\item 
 		
 		% % j % %
-		\item Give two advantages that adaptive quadrature has over using a composite method on a fixed number of uniform panels. Are there potential disadvantages?
+		\item 
 		
 		% % k % %
-		\item What is the Romberg integration and how does it relate to the Richardson extrapolation?
+		\item 
+		
+		% % l % %
+		\item 
+		
+		% % m % %
+		\item 
+		
+		% % n % %
+		\item 
+		
+		% % o % %
+		\item 
+		
+		% % p % %
+		\item 
+		
+		% % q % %
+		\item 
+		
+		% % r % %
+		\item 
+		
+		% % s % %
+		\item 
+		
+		% % t % %
+		\item 
+		
 	\end{enumerate}
 \end{exercise}
 \begin{proof}[Solution]
 	\begin{enumerate}[(a)]
 		% % a % %
-		\item The numerical integration formula is referred to as a \textbf{quadrature rule}. The \textbf{precision} of a quadrature formula is the largest integer $\rho$ such that $E(p_n) = 0$ for all polynomials $p_n(x)$ of degree $n \leq \rho$. E.g., the trapezoidal and midpoint rules have precision 1 and the Simpson rule has precision 3.
+		\item A \emph{piecewise polynomial} is a function that is a polynomial on each of its subdomains, but which may differ from subdomain to subdomain. 
 		
 		% % b % %
-		\item When designing basic rules for numerical integration, it is generally possible to achieve a higher accuracy order than is possible for numerical differentiation based on the same points.
+		\item An interpolant of the form discussed in the previous chapter is not always suitable because 
+		
+		\begin{itemize}
+			\item The error term 
+			
+			\[
+			f(x) - p_n(x) = \frac{f^{(n + 1)} (\xi)}{(n + 1)!} \prod_{i = 0}^n (x - x_i)
+			\]
+			
+			may not be small if $\frac{\| f^{(n + 1)} \|}{(n + 1)!}$ is not. A previous example illustrates this.
+			
+			\item High order polynomials tend to oscillate ``unreasonably.''
+			
+			\item Data often are only piecewise smooth, whereas polynomials are infinitely differentiable. The high derivatives $f^{(n + 1)}$ may blow up in such a case, which again yields a large error term. 
+			
+			\item No locality: changing one data value may drastically alter the entire interpolant. 
+		\end{itemize}
 		
 		% % c % %
-		\item The Lagrange interpolation form is particularly convenient here since we expect to obtain formulas in terms of values of $f(x_i)$.
+		\item This method is convenient when we know nothing of continuity or smoothness of the function $f$. Piecewise constant interpolation is often not smooth enough for applications. 
 		
 		% % d % %
-		\item 
+		\item Among the advantages of broken line interpolation are its simplicity as well as that the maximum and minimum values are at the data points, i.e., no new extremum point is added during the interpolation process. The piecewise linear interpolant is not continuously differentiable everywhere, and as a result, it is often not smooth enough. 
 		
 		% % e % %
-		\item Analogous to piecewise polynomial interpolation, \textbf{composite quadrature methods} is the technique of patching together several individual approximations over a specified number of subintervals. More precisely, given an interval $[a, b]$, partition $[a, b]$ into $n$ subintervals each with length $h = \frac{b - a}{n}$. Then the integral over this interval is just the sum of integrals over the subintervals, where the integrals over the subintervals will be approximated using a (basic) quadrature rule.
+		\item 
 		
 		% % f % %
 		\item 
@@ -128,6 +172,33 @@
 		\item 
 		
 		% % k % %
+		\item 
+		
+		% % l % %
+		\item 
+		
+		% % m % %
+		\item 
+		
+		% % n % %
+		\item 
+		
+		% % o % %
+		\item 
+		
+		% % p % %
+		\item 
+		
+		% % q % %
+		\item 
+		
+		% % r % %
+		\item 
+		
+		% % s % %
+		\item 
+		
+		% % t % %
 		\item 
 	\end{enumerate}
 \end{proof}
