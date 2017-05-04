@@ -131,34 +131,106 @@
 		\tilde{B}_{j, k} = \int_0^1 x^{j + k} dx = \frac{1}{j + k + 1} {,} \quad 0 \leq j, k \leq n {.}
 		\]
 		
-		\noindent Thus, $\tilde{B}$ turns out the be the notorious \textbf{Hilbert matrix}. 
+		\noindent Thus, $\tilde{B} = \left( \tilde{B}_{j, k} \right)$ turns out the be the notorious \textbf{Hilbert matrix}. 
 		
 		% % e % %
-		\item 
+		\item the residual (approximation error) $r^*(x) = f(x) - v(x)$ of the best least squares approximation $v(x) = \sum_j c_j^* \phi_j(x)$ is orthogonal to the basis functions, satisfying
+		
+		\[
+		\int_a^b r^*(x) \phi_k(x) dx = 0 {,} \quad k = 0, \ldots, n {.}
+		\]
+		
+		\noindent In this case, $n = 2$. Then $v(x)$ is the \textbf{orthogonal projection} of $f(x)$ into the space spanned by the basis functions. 
 		
 		% % f % %
-		\item 
+		\item Often in applications the given data are not equally important everywhere. The weight function helps indicate where data is more or less important. Orthogonal polynomials with respect to a weight function $w(x)$ are still the same polynomials, however, the approximation problem changes to
+		
+		\[
+		\min_{\mathbf{c}} \psi(\mathbf{c}) = \int_a^b w(x) (f(x) - v(x))^2 dx {.}
+		\]
+		
+		\noindent The normal equations also read the same, with the modification in the inner product, so 
+		
+		\begin{align*}
+		\tilde{B} \mathbf{c} &= \tilde{\mathbf{b}} {,} \quad \text{where} \\
+		\tilde{B}_{j, k} &= \int_a^b w(x) \phi_j(x) \phi_k(x) dx {,} \quad \tilde{b}_j = \int_a^b w(x) f(x) \phi_j(x) dx {.}
+		\end{align*}
 		
 		% % g % %
-		\item 
+		\item The Legendre polynomials form an orthogonal polynomial basis, which can be used as a basis in the continuous least squares problem, and they are defined on the interval $[-1, 1]$ by the three-term recurrence relation 
+		
+		\begin{align*}
+		\phi_0(x) &= 1 {,} \\
+		\phi_1(x) &= x {,} \\
+		\phi_{j + 1}(x) &= \frac{2 j + 1}{j + 1} x \phi_j(x) - \frac{j}{j + 1} \phi_{j - 1}(x) {,} \quad j \geq 1 {.}
+		\end{align*}
 		
 		% % h % %
-		\item 
+		\item We can apply an affine transformation to $x \in [-1, 1]$ which \emph{scales} and \emph{translates} it. That is, we can write a given $t \in [a, b]$ as 
+		
+		\[
+		t = \frac{1}{2} [(b - a) x + (a + b)] \quad \text{or} \quad x = \frac{2 t - a - b}{b - a} {.}
+		\]
 		
 		% % i % %
-		\item 
+		\item The \textbf{trigonometric polynomials} are an important non-polynomial orthogonal family of basis functions, given on $[-\pi, \pi]$ by 
 		
+		\begin{align*}
+		\phi_0(x) &= \frac{1}{\sqrt{2 \pi}} {,} \\
+		\phi_{2 l - 1}(x) &= \frac{1}{\sqrt{x}} \sin(l x) {,} \\
+		\phi_{2 l}(x) &= \frac{1}{\sqrt{\pi}} \cos(l x) 
+		\end{align*}
+		
+		\noindent for $l = 1, \ldots, \frac{n}{2}$ with $n$ assumed even. Here we have 
+		
+		\[
+		\int_{- \pi}^\pi \phi_j(x) \phi_k(x) dx = \delta_{j k } = \begin{cases}
+		0 {,} \quad j \neq k {,} \\
+		1 {,} \quad j = k {.}
+		\end{cases}
+		\]
+		
+		\noindent Thus, $d_j = 1$, and the basis is called \textbf{orthonormal}. 
+				
 		% % j % %
-		\item 
+		\item The Gram-Schmidt process takes a finite, linearly independent set of vectors in a vector space and generates an orthogonal set that spans the same space. 
+		
+		With the Gram-Schmidt process, for any weight function on any interval, an entire class of orthogonal polynomials is constructed using a simple three-term recurrence relationship. 
 		
 		% % k % %
-		\item 
+		\item For $w(x) = \frac{1}{\sqrt{1 - x^2}}$ and $[a, b] = [-1, 1]$ we obtain the \textbf{Chebyshev polynomials}
+		
+		\begin{align*}
+		\phi_0(x) &= 1 {,} \\
+		\phi_1(x) &= x {,} \\
+		\phi_2(x) &= 2 x^2 - 1 {,} \\
+		\phi_{j + 1}(x) &= 2 x \phi_j(x) - \phi_{j - 1}(x) {.}
+		\end{align*}
+		
+		\noindent Another definition, which is perhaps more elegant, is 
+		
+		\begin{align*}
+		\phi_j(x) = T_j(x) &= \cos(j \ \arccos{x}) \\
+		 &= \cos(j \theta) {,} \quad \text{where } x = \cos(\theta) {.}
+		\end{align*}
+		
+		\noindent They arise as a tool in various instances of numerical analysis.
 		
 		% % l % %
 		\item 
 		
 		% % m % %
-		\item 
+		\item The process is still well-defined. One can see this in the verification of orthogonality. Indeed, if we substitute the alternate definition (see (k)), we obtain 
+		
+		\begin{align*}
+		\int_{-1}^1 w(x) T_j(x) T_k(x) dx &= \int_{-1}^1 \frac{T_j(x) T_k(x)}{\sqrt{1 - x^2}} dx \\
+		 &= \int_0^\pi \cos(j \theta) \cos(k \theta) d\theta = \begin{cases} 
+		 0 {,} \quad j \neq k \\
+		 \frac{\pi}{2} {,} \quad j = k > 0 {.}
+		 \end{cases}
+		\end{align*}
+		
+		\noindent We see in the transformation from $x$ to $\theta$ that $dx = - \sin(\theta) d\theta$, and $\sqrt{1 - x^2} = \sqrt{1 - \cos^2(\theta)} = \sin(\theta)$, so $\sin(\theta)$ cancels in the integrand. 
 	\end{enumerate}
 \end{proof}
 
@@ -190,7 +262,34 @@
 	\end{gather}
 \end{exercise}
 \begin{proof}[Solution]
+	We wish to calculate the quadratic polynomial $q_2(t)$ that minimizes 
 	
+	\[
+	\int_0^1 \left( \sin(\pi t) - q_2(t) \right)^2 dt {.}
+	\]
+	
+	\noindent Here $t = \frac{1}{2}(x + 1)$, or $x = 2 t - 1$. We get
+	
+	\begin{align*}
+	\phi_0(t) &= 1 {,} \\
+	\phi_1(t) &= 2 t - 1 {,} \\
+	\phi_2(t) &= 6 t^2 - 6 t + 1 {.}
+	\end{align*}
+	
+	\noindent This yields 
+	
+	\begin{align*}
+	\tilde{b}_0 &= \int_0^1 \sin{\pi t} d t = \frac{2}{\pi} {,} \quad d_0 = \| \phi_0 \|^2 = \int_0^1 dt = 1 {,} \\
+	\tilde{b}_1 &= \int_0^1 (2 t - 1) \sin(\pi t) dt = 0 {,} \quad d_1 = \| \phi_1 \|^2 = \int_0^1 (2 t - 1)^2 dt = \frac{1}{3} {,} \\
+	\tilde{b}_2 &= \int_0^1 (6 t^2 - 6 t + 1) \sin(\pi t) dt = \frac{2(\pi^2 - 12)}{\pi^3} {,} \\
+	&\qquad d_2 = \| \phi_2 \|^2 = \int_0^1 (6 t^2 - 6 t + 1)^2 dt = \frac{1}{5} {.}
+	\end{align*}
+	
+	\noindent So, our best approximating quadratic is 
+	
+	\[
+	q_2(t) = \frac{2}{\pi} + \frac{10(\pi^2 - 12)}{\pi^3} (6 t^2 - 6 t + 1) {.}
+	\]
 \end{proof}
 
 % % % % % % % % % % %
@@ -218,7 +317,7 @@
 	\]
 \end{exercise}
 \begin{proof}[Solution]
-	
+	A linear transformation on $x$ will not have an affect on the orthogonality of the basis, so the inner product will still remain $0$ when $j \neq k$. Hence we only need to show the result for when $j = k$. 
 \end{proof}
 
 % % % % % % % % % % %
@@ -228,7 +327,23 @@
 	Redo Example 12.1, reconstructing Figure 12.1, using an orthogonal polynomial basis.
 \end{exercise}
 \begin{proof}[Solution]
+	The first three Legendre polynomials are computed for us in the book on Page 371. The fourth we obtain by the three-term recurrence relation
 	
+	\[
+	\phi_4(x) = \frac{1}{8} (35 x^4 - 30 x^2 + 3) {.}
+	\]
+
+	\noindent We compute, for each $n = 0, 1, 2, 3, 4$, the best polynomial approximations of degree $\leq n$ of the function $f(x) = \cos(2 \pi x)$ using the Legendre polynomials as basis functions. For this we need the following integrals, many of which are obtained by integration by parts (although one may use the integrals already computed in Example 12.1 to save some time):
+	
+	\begin{align*}
+	\tilde{b}_0 &= \int_{-1}^1 \cos(2 \pi x) dx = 0 {,} \\
+	\tilde{b}_1 &= \int_{-1}^1 x \cos(2 \pi x) dx = 0 {,} \\
+	\tilde{b}_2 &= \frac{1}{2} \int_{-1}^1 (3 x^2 - 1) \cos(2 \pi x) dx = \frac{3}{2 \pi^2} {,} \\
+	\tilde{b}_3 &= \frac{1}{2} \int_{-1}^1 (5 x^3 - 3 x) \cos(2 \pi x) dx = 0 {,} \\
+	\tilde{b}_4 &= \frac{1}{2} \int_{-1}^1 \cos(2 \pi x) dx = \frac{5}{\pi^2} - \frac{105}{8 \pi^4} {.} \\
+	\end{align*}
+	
+	\noindent With this, we see that $p_0(x) = p_1(x) = 0$, $p_2(x) = p_3(x) = \dfrac{45}{8 \pi^2} x^2 - \dfrac{15}{8 \pi^2}$, and $p_4(x) = \left( \dfrac{45}{2 \pi^2} - \dfrac{945}{16 \pi^4} \right) \dfrac{1}{8} \left( 35 x^4 - 30 x^2 + 3 \right) + \dfrac{45}{8 \pi^2} x^2 - \dfrac{15}{8 \pi^2}$. Plots omitted.
 \end{proof}
 
 % % % % % % % % % % %
@@ -264,10 +379,10 @@
 		\noindent [Recall Section 10.3.]
 		
 		% % b % %
-		\item For a given function $f(x)$, let $y_k = f (x_k)$, $k = 1, \ldots, n$. Show that the polynomial $p_{n - 1}(x)$ of degree at most $n - 1$ that interpolates the function $f(x)$ at the zeros $x1,...,xn$ of the orthogonal polynomial $\phi_n(x)$ satisfies
+		\item For a given function $f(x)$, let $y_k = f (x_k)$, $k = 1, \ldots, n$. Show that the polynomial $p_{n - 1}(x)$ of degree at most $n - 1$ that interpolates the function $f(x)$ at the zeros $x_1, \ldots, x_n$ of the orthogonal polynomial $\phi_n(x)$ satisfies
 		
 		\[
-		\| p_{n - 1} \|^2 = \sum_{k = 1}^n y_k^b \| L_k \|^2
+		\| p_{n - 1} \|^2 = \sum_{k = 1}^n y_k^2 \| L_k \|^2
 		\]
 		
 		\noindent in the weighted least squares norm. This norm is defined by 
@@ -280,7 +395,31 @@
 	\end{enumerate}
 \end{exercise}
 \begin{proof}[Solution]
-	
+	\begin{enumerate}[(a)]
+		% % a % % 
+		\item Consider the polynomial $\phi_n(x)$. Since $\phi_n(x)$ has $n$ real roots in the interval $[a, b]$, we may express it as 
+		
+		\[
+		\phi_n(x) = (x - x_1) (x - x_2) \cdots (x - x_n) {.}
+		\]
+		
+		\noindent Now, notice that the product of the two Lagrange polynomials $L_j(x)$ and $L_k(x)$ may be written as 
+		
+		\begin{align*}
+		L_j(x) L_k(x) &= \prod_{i = 1, i \neq j}^n \frac{(x - x_i)}{(x_j - x_i)} \prod_{i = 1, i \neq k}^n \frac{(x - x_i)}{(x_k - x_i)} \\
+		 &= \prod_{i = 1}^n (x - x_i) \prod_{i = 1, i \neq j}^n \frac{1}{(x_j - x_i)} \prod_{i = 1, i \neq k}^n \frac{(x - x_i)}{(x_k - x_i)} \\
+		 &= \phi_n(x) p_{n - 2}(x) {,}
+		\end{align*}
+		
+		\noindent where $\phi_n(x)$ is a degree $n$ polynomial from the basis and $p_{n - 2}(x)$ is a degree $n - 2$ polynomial. $p_{n - 2}(x)$ is also just an orthogonal projection of some function $f(x)$ into the space spanned by the basis functions $\phi_0(x), \phi_1(x), \ldots, \phi_{n - 2}(x)$, and so $\phi_n(x)$ and $p_{n - 2}(x)$ are orthogonal and we have
+		
+		\[
+		\int_a^b w(x) L_j(x) L_k(x) dx = \int_a^b w(x) \phi_n(x) p_{n - 2}(x) = 0 {,} \quad j \neq k {.}
+		\]
+		
+		% % b % % 
+		\item 
+	\end{enumerate}
 \end{proof}
 
 % % % % % % % % % % %

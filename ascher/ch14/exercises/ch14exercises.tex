@@ -62,96 +62,41 @@
 \begin{exercise}[Review Questions]
 	\begin{enumerate}[(a)]
 		% % a % %
-		\item What is a piecewise polynomial?
+		\item How does numerical differentiation differ from manual or symbolic differentiation?
 		
 		% % b % %
-		\item State at least three shortcomings of polynomial interpolation that are improved upon by piecewise polynomial interpolation.
+		\item Define order of accuracy.
 		
 		% % c % %
-		\item State at least one advantage and one disadvantage of piecewise constant interpolation.
+		\item 
 	
 		% % d % %
-		\item State at least two advantages and two disadvantages of broken line interpolation.
+		\item 
 		
 		% % e % %
-		\item What is a piecewise cubic Hermite?
+		\item 
 		
 		% % f % %
-		\item In what ways are the cubic spline and piecewise cubic Hermite useful interpolants?
+		\item 
 		
 		% % g % %
-		\item Define the different end conditions for cubic spline interpolation, giving rise to the natural, complete, and not-a-knot variants. Which of these is most suitable for general purpose implementation, and why?
-		
-		% % h % %
 		\item 
-		
-		% % i % %
-		\item 
-		
-		% % j % %
-		\item 
-		
-		% % k % %
-		\item 
-		
-		% % l % %
-		\item 
-		
-		% % m % %
-		\item 
-		
-		% % n % %
-		\item 
-		
-		% % o % %
-		\item 
-		
-		% % p % %
-		\item 
-		
-		% % q % %
-		\item 
-		
-		% % r % %
-		\item 
-		
-		% % s % %
-		\item 
-		
-		% % t % %
-		\item 
-		
+			
 	\end{enumerate}
 \end{exercise}
 \begin{proof}[Solution]
 	\begin{enumerate}[(a)]
 		% % a % %
-		\item A \emph{piecewise polynomial} is a function that is a polynomial on each of its subdomains, but which may differ from subdomain to subdomain. 
+		\item 
 		
 		% % b % %
-		\item An interpolant of the form discussed in the previous chapter is not always suitable because 
-		
-		\begin{itemize}
-			\item The error term 
-			
-			\[
-			f(x) - p_n(x) = \frac{f^{(n + 1)} (\xi)}{(n + 1)!} \prod_{i = 0}^n (x - x_i)
-			\]
-			
-			may not be small if $\frac{\| f^{(n + 1)} \|}{(n + 1)!}$ is not. A previous example illustrates this.
-			
-			\item High order polynomials tend to oscillate ``unreasonably.''
-			
-			\item Data often are only piecewise smooth, whereas polynomials are infinitely differentiable. The high derivatives $f^{(n + 1)}$ may blow up in such a case, which again yields a large error term. 
-			
-			\item No locality: changing one data value may drastically alter the entire interpolant. 
-		\end{itemize}
+		\item The order of accuracy refers to the order $n$ of the truncation error $O(h^n)$ associated with a derivative approximation. 
 		
 		% % c % %
-		\item This method is convenient when we know nothing of continuity or smoothness of the function $f$. Piecewise constant interpolation is often not smooth enough for applications. 
+		\item 
 		
 		% % d % %
-		\item Among the advantages of broken line interpolation are its simplicity as well as that the maximum and minimum values are at the data points, i.e., no new extremum point is added during the interpolation process. The piecewise linear interpolant is not continuously differentiable everywhere, and as a result, it is often not smooth enough. 
+		\item 
 		
 		% % e % %
 		\item 
@@ -162,44 +107,6 @@
 		% % g % %
 		\item 
 		
-		% % h % %
-		\item 
-		
-		% % i % %
-		\item 
-		
-		% % j % %
-		\item 
-		
-		% % k % %
-		\item 
-		
-		% % l % %
-		\item 
-		
-		% % m % %
-		\item 
-		
-		% % n % %
-		\item 
-		
-		% % o % %
-		\item 
-		
-		% % p % %
-		\item 
-		
-		% % q % %
-		\item 
-		
-		% % r % %
-		\item 
-		
-		% % s % %
-		\item 
-		
-		% % t % %
-		\item 
 	\end{enumerate}
 \end{proof}
 
@@ -207,10 +114,10 @@
 % % % Exercise 1 % % %
 % % % % % % % % % % %
 \begin{exercise}
-	
+	Derive a difference formula for the fourth derivative of $f$ at $x_0$ using Taylor's expansions at $x_0 \pm h$ and $x_0 \pm 2 h$. How many points will be used in total and what is the expected order of the resulting formula?
 \end{exercise}
 \begin{proof}[Solution]
-	
+	From the remarks at the end of page 412, we expect to use $5$ mesh points to approximate the fourth derivative and we expect the order to be equal to $5$. 
 \end{proof}
 
 % % % % % % % % % % %
@@ -353,51 +260,6 @@
 
 % % % % % % % % % % %
 % % % Exercise 17 % % %
-% % % % % % % % % % %
-\begin{exercise}
-	(later) 
-\end{exercise}
-
-% % % % % % % % % % %
-% % % Exercise 18 % % %
-% % % % % % % % % % %
-\begin{exercise}
-	(later) 
-\end{exercise}
-
-% % % % % % % % % % %
-% % % Exercise 19 % % %
-% % % % % % % % % % %
-\begin{exercise}
-	(later) 
-\end{exercise}
-
-% % % % % % % % % % %
-% % % Exercise 20 % % %
-% % % % % % % % % % %
-\begin{exercise}
-	(later) 
-\end{exercise}
-
-% % % % % % % % % % %
-% % % Exercise 21 % % %
-% % % % % % % % % % %
-\begin{exercise}
-	(later) 
-\end{exercise}
-
-% % % % % % % % % % %
-% % % Exercise 22 % % %
-% % % % % % % % % % %
-\begin{exercise}
-	
-\end{exercise}
-\begin{proof}[Solution]
-	
-\end{proof}
-
-% % % % % % % % % % %
-% % % Exercise 23 % % %
 % % % % % % % % % % %
 \begin{exercise}
 	(later) 
