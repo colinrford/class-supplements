@@ -52,50 +52,83 @@
 \begin{exercise}[Review Questions]
 	\begin{enumerate}[(a)]
 		% % a % %
-		\item What is the difference, according to Section 1.1, between scientific computing and numerical analysis?
+		\item What is a normalized floating point number and what is the purpose of normalization?
 		
 		% % b % %
-		\item Give a sample example where relative error is a more suitable measure than absolute error, and another example where the absolute error measure is more suitable. 
+		\item A general floating point system is characterized by four values $(\beta, t, L, U)$. Explain in a few brief sentences the meaning and importance of each of these parameters.
 		
 		% % c % %
-		\item State a major difference between the nature of roundoff errors and discretization errors.
+		\item Write down the floating point representation of a given real number $x$ in a decimal system with $t = 4$, using (i) chopping and (ii) rounding.
 		
 		% % d % %
-		\item Explain briefly why accumulation of roundoff errors is inevitable when arithmetic operations are performed in a floating point system. Under which circumstances is it tolerable in numerical computations?
+		\item Define rounding unit (or machine precision) and explain its importance.
 		
 		% % e % %
-		\item Explain the differences between accuracy, efficiency, and robustness as criteria for evaluating an algorithm.
+		\item Define overflow and underflow. Why is the former considered more damaging than the latter?
 		
 		% % f % %
-		\item Show that nested evaluation of a polynomial of degree $n$ requires only $2n$ elementary operations and hence has $O(n)$ complexity.
+		\item What is a cancellation error? Give an example of an application where it arises in a natural way.
 		
 		% % g % %
-		\item Distinguish between problem conditioning and algorithm stability.
+		\item What is the rounding unit for base $\beta = 2$ and $t = 52$ digits?
+		
+		% % h % %
+		\item Under what circumstances could nonnormalized floating point numbers be desirable?
+		
+		% % i % %
+		\item Explain the storage scheme for single precision and double precision numbers in the IEEE standard.
 		
 	\end{enumerate}
 \end{exercise}
 \begin{proof}[Solution]
 	\begin{enumerate}[(a)]
 		% % a % %
-		\item 
+		\item A normalized floating point number is one where we force the leading digit, $d_0$, to be nonzero. This ensures uniqueness. 
 		
 		% % b % %
-		\item 
+		\item $\beta$ represents the base of the number system, and is an integer larger than $1$. $t$ is the precision or number of digits in the number system. $L$ is the lower bound on the exponent $e$ and $U$ is the upper bound on the exponent $e$.
 		
 		% % c % %
-		\item 
+		\item Suppose $x = \pm(d_0.d_1 d_2 d_3 d_4) \times \beta^e$. Using chopping, we have that 
+		
+		\[
+		\text{fl}(x) = \pm (d_0.d_1 d_2 d_3) \times \beta^e {.}
+		\]
+		
+		\noindent Using rounding, 
+		
+		\[
+		\text{fl}(x) = \begin{cases}
+		\pm (d_0.d_1 d_2 d_3) \times \beta^e {,} &\quad d_4 < \frac{\beta}{2} \\
+		\pm (d_0.d_1 d_2 d_3 + \beta^{-3}) \times \beta^e {,} &\quad d_4 > \frac{\beta}{2} 
+		\end{cases}
+		\]
+		
+		and in the case of $d_t = \beta / 2$, round to the nearest even number. 
 		
 		% % d % %
-		\item 
+		\item For a general floating point system $(\beta, t , L, U)$ the rounding unit is 
+		
+		\[
+		\eta = \frac{1}{2} \beta^{1 - t} {.}
+		\]
+		
+		\noindent The rounding unit expresses a bound on the relative error. 
 		
 		% % e % %
-		\item 
+		\item An \textbf{overflow} is obtained when a number is too large to fit into the floating point system in use, i.e., when $e > U$. An \textbf{underflow} is obtained when $e < L$. When overflow occurs in the course of a calculation, this is generally fatal; whereas underflow is nonfatal: the system usually sets the number to 0 and continues. 
 		
 		% % f % %
-		\item 
+		\item \emph{Cancellation error} occurs when two nearly equal numbers are subtracted from one another; it is a type of error magnification. When finding the roots of a quadratic equation $x^2 - 2 b x + c = 0$, with $b^2 > c$, one could encounter a cancellation error if $\sqrt{b^2 - c} \approx |b|$. In this case, one of the calculated roots will be approximately zero and inaccurate.
 		
 		% % g % %
-		\item 
+		\item Using the formula, $\eta = \frac{1}{2} 2^{-51} = 2^{- 52}$. 
+		
+		% % h % %
+		\item Nonnormalized numbers could help fill the underflow gap, i.e., help address the fact that the spacing between zero and the smallest positive number is larger that the spacing between that same smallest positive number and the next smallest positive number.
+		
+		% % i % % 
+		\item For double precision, we have $\beta = 2$, $t = 52$, $L = -1022$ and $U = 1023$. For single precision, $\beta = 2$, $t = 23$, $L = -126$ and $U = 127$. 
 		
 	\end{enumerate}
 \end{proof}

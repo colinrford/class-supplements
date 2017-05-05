@@ -109,53 +109,113 @@
 		where the first property is called additivity and the second homogeneity. Any function which does not satisfy these properties is called \emph{nonlinear}. 
 		
 		% % b % %
-		\item 
+		\item The bisection method 
 		\begin{enumerate}[(i)]
 			% % i % %
-			\item 
+			\item is not very time efficient; it is (relatively) slow.
 			
 			% % ii % %
-			\item 
+			\item is robust; it will always find a root if one exists in the interval.
 			
 			% % iii % %
-			\item 
+			\item only requires continuity of the function.
+			
+			% % iv % %
+			\item (iii).
+			
+			% % v % %
+			\item does not generalize easily to several functions in several variables.
 		\end{enumerate}
 		
 		% % c % %
-		\item 
+		\item Newton's method 
+		\begin{enumerate}[(i)]
+			% % i % %
+			\item is basic and fast.
+			
+			% % ii % %
+			\item is robust.
+			
+			% % iii % %
+			\item requires that we know how to evaluate the derivative. 
+			
+			% % iv % %
+			\item requires that we know the derivative exists.
+			
+			% % v % %
+			\item does generalize easily.
+		\end{enumerate}
+	
+		The secant method 
+		\begin{enumerate}[(i)]
+			% % i % %
+			\item is fast.
+		
+			% % ii % %
+			\item is robust.
+		
+			% % iii % %
+			\item only requires continuity of the function.
+		
+			% % iv % %
+			\item does not require that we know the derivative.
+		
+			% % v % %
+			\item does not generalize easily to several functions in several variables.
+		\end{enumerate}
 		
 		% % d % %
-		\item 
+		\item An advantage of the recursive implementation is that it is incredibly short. A disadvantage is the fact that it is wasteful in terms of storage and potentially suboptimal in terms of CPU time. 
 		
 		% % e % %
-		\item 
+		\item For a given problem $f(x) = 0$, we can define many functions $g$. 
 		
 		% % f % %
-		\item 
+		\item If $g$ is continuous on the interval $[a, b]$ and $a \leq g(x) \leq b$ for all $a \leq x \leq b$, then there is a fixed point $x^*$ in the interval $[a, b]$. 
+		
+		If, in addition, the derivative $g'$ exists and there is a constant $\rho < 1$ such that the derivative satisfies
+		
+		\[
+		|g'(x)| \leq \rho \quad \forall \ x \in (a, b) {,}
+		\]
+		
+		\noindent then the fixed point is unique in this interval. This value of $\rho$ is directly related to the speed of convergence; the smaller $\rho$ is, the faster the iteration converges. 
 		
 		% % g % %
-		\item 
+		\item Just because a given fixed point iteration does not mean there does not exist a root in the relevant interval; see Example 3.5. 
 		
 		% % h % %
-		\item 
+		\item Two advantages of Newton's method are the fact that it is the most basic fast method for root finding, and that it can be directly extended to more general problems. Two disadvantages of Newton's method are (i) the need to know not only that the derivative exists but also how to evaluate it, and (ii) the local nature of the method's convergence. 
 		
 		% % i % %
-		\item 
+		\item The order of convergence refers to the number $n$ in the equation
+		
+		\[
+		|x_{k + 1} - x^*| \leq M |x_k - x^*|^n {.}
+		\]
+		
+		\noindent The larger $n$ is the higher the rate of convergence.
 		
 		% % j % %
-		\item 
+		\item The secant method does not require that the derivative exists. 
 		
 		% % k % %
-		\item 
+		\item If, in addition to the assumptions that guarantee convergence in the Fixed Point Theorem, also $g'(x_0) \neq 0$, then the method converges linearly. See Exercise 3. 
 		
 		% % l % %
 		\item 
 		
 		% % m % %
-		\item 
+		\item Solving the nonlinear equation $\varphi'(x) = 0$ will produce a critical point $x^*$. This $x^*$ is a \emph{local minimizer} of $\varphi(x)$ if $\varphi''(x^*) > 0$.
 		
 		% % n % %
-		\item 
+		\item A \emph{convex} function $\varphi$ is one that, for any two points $x, y \in [a, b]$ and for all $\theta \in [0, 1]$, satisfies
+		
+		\[
+		\varphi(\theta x + (1 - \theta) y) \leq \theta \varphi(x) + (1 - \theta) \varphi(y) {.}
+		\]
+		
+		\noindent If an objective function is convex, the problems of finding local and global minima coincide. 
 	\end{enumerate}
 \end{proof}
 
